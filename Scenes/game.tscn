@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://fv1fjxyadb53"]
+
+[ext_resource type="Texture2D" uid="uid://bkg8r3mlriksh" path="res://icon.svg" id="1_q41hc"]
+
+[node name="Game" type="Node2D"]
+
+[node name="JetSki" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="JetSki"]
+position = Vector2(35, 35)
+scale = Vector2(0.546875, 0.546875)
+texture = ExtResource("1_q41hc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JetSki"]
