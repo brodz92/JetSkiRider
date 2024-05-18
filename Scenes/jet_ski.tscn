@@ -7,16 +7,19 @@
 size = Vector2(34, 53)
 
 [node name="JetSki" type="CharacterBody2D"]
+disable_mode = 2
+motion_mode = 1
+wall_min_slide_angle = 0.403171
 script = ExtResource("1_2i41b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(18, 27)
+position = Vector2(1.90735e-06, 27)
 scale = Vector2(0.273438, 0.429688)
 texture = ExtResource("2_wdo6m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(18, 27.5)
+position = Vector2(0, 27.5)
 shape = SubResource("RectangleShape2D_32d2d")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(2.2, 2.2)
