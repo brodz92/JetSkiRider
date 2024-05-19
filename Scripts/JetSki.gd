@@ -3,15 +3,18 @@ extends CharacterBody2D
 
 const SPEED = 300
 @onready var sprite = $Sprite2D
+@onready var jump_timer = $JumpTimer
 
 var xDirection
 var yDirection
+var currentScale = scale
 
 func _ready():
 	SignalBus.playerJumpSmall.connect(on_playerJumpSmall)
 
 func on_playerJumpSmall():
-	pass
+	var newScale = currentScale + 3
+	jump_timer.start()
 
 func _physics_process(delta):
 	handleMovement()
@@ -37,23 +40,6 @@ func handleMovement():
 		rotation_degrees += 3
 	elif xDirection < 0:
 		rotation_degrees -= 3
-#func handleMovement():
-	#
-	#yDirection = Input.get_axis("Up", "Down")
-	#if xDirection or yDirection:
-		#velocity.x = xDirection * SPEED
-		#velocity.y = yDirection * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
-		#velocity.y = move_toward(velocity.y, 0, SPEED)
-	#move_and_slide()
 
-#func handleAnimation():
-	#if xDirection > 0:
-		#sprite.rotation_degrees = 90
-	#elif xDirection < 0:
-		#sprite.rotation_degrees = -90
-	#elif yDirection > 0:
-		#sprite.rotation_degrees = 180
-	#elif yDirection < 0:
-		#sprite.rotation_degrees = 0
+func _on_jump_timer_timeout():
+	scale = currentScale

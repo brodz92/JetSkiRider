@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf3n8w12r44wf"]
+
+[ext_resource type="Script" path="res://Scripts/WaterJump.gd" id="1_jdblc"]
+[ext_resource type="Texture2D" uid="uid://b5nw1123m8rpn" path="res://Water+.png" id="2_r4twd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7irao"]
+size = Vector2(42, 16)
+
+[node name="WaveJump" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_jdblc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.27778, 0.844606)
+texture = ExtResource("2_r4twd")
+region_enabled = true
+region_rect = Rect2(64.2426, 65.9753, 18.0795, 18.8341)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7irao")
+debug_color = Color(0.989701, 6.73831e-07, 0.49288, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

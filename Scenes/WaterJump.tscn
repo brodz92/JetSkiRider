@@ -1,13 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqckergbhp85l"]
+[gd_scene load_steps=4 format=3 uid="uid://bqckergbhp85l"]
 
 [ext_resource type="Script" path="res://Scripts/WaterJump.gd" id="1_j4qle"]
+[ext_resource type="Texture2D" uid="uid://b5nw1123m8rpn" path="res://Water+.png" id="2_ah0gm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y05yy"]
+size = Vector2(46, 16)
 
 [node name="WaterJump" type="Node"]
 script = ExtResource("1_j4qle")
 
 [node name="Area2D" type="Area2D" parent="."]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+modulate = Color(0.33989, 0.298099, 0, 1)
+texture_filter = 1
+texture = ExtResource("2_ah0gm")
+region_enabled = true
+region_rect = Rect2(35.6458, 31.5733, 45.7224, 16.3698)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_y05yy")
