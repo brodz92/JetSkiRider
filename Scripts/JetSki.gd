@@ -3,6 +3,9 @@ extends CharacterBody2D
 
 const SPEED = 300
 @onready var sprite = $Sprite2D
+@onready var jet_ski = $"."
+@onready var collision = $CollisionShape2D
+
 
 var xDirection
 var yDirection
@@ -12,15 +15,13 @@ func _ready():
 
 func on_playerJumpSmall():
 	jumpUp()
-	jumpDown()
 
 func jumpUp():
 	var tween = create_tween()
-	tween.tween_property($Sprite2D ,"scale", Vector2(3,3), 0.5)
-
-func jumpDown():
-	var tween = create_tween()
-	tween.tween_property($Sprite2D ,"scale", Vector2(1,1), 0.5)
+	tween.tween_property(collision ,"disabled", true, 0)
+	tween.parallel().tween_property(jet_ski ,"scale", Vector2(1.5,1.5), 0.3)
+	tween.tween_property(jet_ski ,"scale", Vector2(0.5,0.5), 0.3)
+	tween.tween_property(collision ,"disabled", false, 0)
 
 func _physics_process(delta):
 	handleMovement()
