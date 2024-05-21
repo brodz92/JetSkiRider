@@ -9,7 +9,9 @@ size = Vector2(34, 53)
 [node name="JetSki" type="CharacterBody2D"]
 disable_mode = 2
 motion_mode = 1
+slide_on_ceiling = false
 wall_min_slide_angle = 0.403171
+floor_block_on_wall = false
 script = ExtResource("1_2i41b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

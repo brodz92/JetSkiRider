@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://fv1fjxyadb53"]
+[gd_scene load_steps=9 format=3 uid="uid://fv1fjxyadb53"]
 
 [ext_resource type="PackedScene" uid="uid://cov042gtgxdk6" path="res://Scenes/jet_ski.tscn" id="1_7k0wd"]
-[ext_resource type="Texture2D" uid="uid://dcqliqkvold67" path="res://Water16x16.png" id="2_1rg7m"]
-[ext_resource type="Texture2D" uid="uid://b5nw1123m8rpn" path="res://Water+.png" id="3_5ef83"]
+[ext_resource type="Texture2D" uid="uid://dcqliqkvold67" path="res://Sprites/Water16x16.png" id="2_1rg7m"]
+[ext_resource type="Texture2D" uid="uid://b5nw1123m8rpn" path="res://Sprites/Water+.png" id="3_5ef83"]
 [ext_resource type="PackedScene" uid="uid://cf3n8w12r44wf" path="res://Scenes/wave_jump.tscn" id="4_jj5yi"]
+[ext_resource type="PackedScene" uid="uid://w4re2p4oswe" path="res://Scenes/power_up.tscn" id="5_qrdwt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0rbxv"]
 texture = ExtResource("2_1rg7m")
@@ -574,3 +575,7 @@ layer_0/tile_data = PackedInt32Array(1114122, 458753, 2, 1179658, 458753, 2, 124
 [node name="WaveJump" parent="." instance=ExtResource("4_jj5yi")]
 position = Vector2(-672, 1679)
 scale = Vector2(1, 0.56)
+
+[node name="Power_Up" parent="." instance=ExtResource("5_qrdwt")]
+position = Vector2(-434, 1620)
+scale = Vector2(0.15, 0.15)

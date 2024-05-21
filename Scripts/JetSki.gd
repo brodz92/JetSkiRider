@@ -5,13 +5,18 @@ const SPEED = 300
 @onready var sprite = $Sprite2D
 @onready var jet_ski = $"."
 @onready var collision = $CollisionShape2D
-
+var acceleration = 600
+var friction = 350
+var angular_speed = 4
+var max_speed = 300
+#var velocity = Vector2.ZERO
 
 var xDirection
 var yDirection
 
 func _ready():
 	SignalBus.playerJumpSmall.connect(on_playerJumpSmall)
+	#var velocity = Vector2.ZERO
 
 func on_playerJumpSmall():
 	jumpUp()
@@ -24,26 +29,27 @@ func jumpUp():
 	tween.tween_property(collision ,"disabled", false, 0)
 
 func _physics_process(delta):
-	handleMovement()
+	handle_movement(delta)
 	#handleAnimation()
 
 
-func handleMovement():
-	var direction = Vector2.ZERO
-	
+func handle_movement(delta):
+	var input_direction = Vector2.ZERO
+	# Handle movement
 	if Input.is_action_pressed("Up"):
-		direction = Vector2.UP.rotated(rotation)
-	
-	if direction != Vector2.ZERO:
-		direction = direction.normalized()
-		velocity = direction * SPEED
+		input_direction = Vector2.UP.rotated(rotation)
+
+	if input_direction != Vector2.ZERO:
+		input_direction = input_direction.normalized()
+		velocity += input_direction * acceleration * delta
+		if velocity.length() > max_speed:
+			velocity = velocity.normalized() * max_speed
 	else:
-		velocity = Vector2.ZERO
-	
+		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+
 	move_and_slide()
-	
-	xDirection = Input.get_axis("Left", "Right")
-	if xDirection > 0:
-		rotation_degrees += 3
-	elif xDirection < 0:
-		rotation_degrees -= 3
+
+	# Handle rotation input
+	var x_direction = Input.get_axis("Left", "Right")
+	if x_direction != 0:
+		rotation_degrees += x_direction * angular_speed

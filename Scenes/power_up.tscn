@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://w4re2p4oswe"]
+
+[ext_resource type="Texture2D" uid="uid://p8kpl8vxjsi" path="res://Sprites/StaticGameItems.png" id="1_f1m8e"]
+
+[node name="Power_Up" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_f1m8e")
+region_enabled = true
+region_rect = Rect2(154, 5, 162, 137)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

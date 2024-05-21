@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqckergbhp85l"]
 
 [ext_resource type="Script" path="res://Scripts/WaterJump.gd" id="1_j4qle"]
-[ext_resource type="Texture2D" uid="uid://b5nw1123m8rpn" path="res://Water+.png" id="2_ah0gm"]
+[ext_resource type="Texture2D" uid="uid://b5nw1123m8rpn" path="res://Sprites/Water+.png" id="2_ah0gm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y05yy"]
 size = Vector2(46, 16)
