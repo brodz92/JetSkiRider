@@ -5,10 +5,11 @@ const SPEED = 300
 @onready var sprite = $Sprite2D
 @onready var jet_ski = $"."
 @onready var collision = $CollisionShape2D
-var acceleration = 600
-var friction = 350
-var angular_speed = 4
+@onready var timer: Timer = $Timer
+var acceleration = 400
 var max_speed = 300
+var friction = 100
+var angular_speed = 4
 #var velocity = Vector2.ZERO
 
 var xDirection
@@ -16,10 +17,16 @@ var yDirection
 
 func _ready():
 	SignalBus.playerJumpSmall.connect(on_playerJumpSmall)
+	SignalBus.speedPowerUp.connect(on_speedPowerUp)
 	#var velocity = Vector2.ZERO
 
 func on_playerJumpSmall():
 	jumpUp()
+
+func on_speedPowerUp():
+	acceleration = 900
+	max_speed = 600
+	timer.start()
 
 func jumpUp():
 	var tween = create_tween()
@@ -53,3 +60,13 @@ func handle_movement(delta):
 	var x_direction = Input.get_axis("Left", "Right")
 	if x_direction != 0:
 		rotation_degrees += x_direction * angular_speed
+	if Input.is_action_pressed("Down"):
+		var currentFriction = friction
+		friction += 50
+		if Input.is_action_just_released("Down"):
+			friction = currentFriction
+
+
+func _on_timer_timeout() -> void:
+	acceleration = 400
+	max_speed = 300
