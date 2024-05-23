@@ -15,12 +15,12 @@ floor_block_on_wall = false
 script = ExtResource("1_2i41b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.90735e-06, 27)
+position = Vector2(4.54747e-13, 16)
 scale = Vector2(0.273438, 0.429688)
 texture = ExtResource("2_wdo6m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 27.5)
+position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_32d2d")
 
 [node name="Camera2D" type="Camera2D" parent="."]

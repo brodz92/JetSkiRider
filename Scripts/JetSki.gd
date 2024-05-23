@@ -2,14 +2,15 @@ extends CharacterBody2D
 
 
 const SPEED = 300
+const FRICTION = 300
 @onready var sprite = $Sprite2D
 @onready var jet_ski = $"."
 @onready var collision = $CollisionShape2D
 @onready var timer: Timer = $Timer
 var acceleration = 400
 var max_speed = 300
-var friction = 100
 var angular_speed = 4
+var current_friction
 #var velocity = Vector2.ZERO
 
 var xDirection
@@ -18,14 +19,15 @@ var yDirection
 func _ready():
 	SignalBus.playerJumpSmall.connect(on_playerJumpSmall)
 	SignalBus.speedPowerUp.connect(on_speedPowerUp)
+	current_friction = FRICTION
 	#var velocity = Vector2.ZERO
 
 func on_playerJumpSmall():
 	jumpUp()
 
 func on_speedPowerUp():
-	acceleration = 900
-	max_speed = 600
+	acceleration = 800
+	max_speed = 500
 	timer.start()
 
 func jumpUp():
@@ -52,7 +54,7 @@ func handle_movement(delta):
 		if velocity.length() > max_speed:
 			velocity = velocity.normalized() * max_speed
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+		velocity = velocity.move_toward(Vector2.ZERO, current_friction * delta)
 
 	move_and_slide()
 
@@ -61,10 +63,9 @@ func handle_movement(delta):
 	if x_direction != 0:
 		rotation_degrees += x_direction * angular_speed
 	if Input.is_action_pressed("Down"):
-		var currentFriction = friction
-		friction += 50
-		if Input.is_action_just_released("Down"):
-			friction = currentFriction
+		current_friction += 50
+	if Input.is_action_just_released("Down"):
+		current_friction = FRICTION
 
 
 func _on_timer_timeout() -> void:
